@@ -130,12 +130,5 @@ python src/predict.py --image path/to/image.jpg
 ### ❌ **Issue: Input size mismatch error (128x128 vs 224x224)**  
 ✅ **Solution**: Resized images correctly to **224×224** before feeding into ViT.  
 
----
-
-## 👨‍💻 **9. Contributors**  
-- **Your Name** ([@yourGitHubHandle](https://github.com/yourGitHubHandle))  
-
----
-
 
 
