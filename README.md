@@ -1,148 +1,141 @@
-# Segment Anything Using Vision Transformers (ViT)
-This repository demonstrates the use of Meta's Segment Anything Model (SAM) with Vision Transformers (ViT) for image segmentation. It includes step-by-step instructions to set up the environment, download necessary files, execute the segmentation script, and visualize the results.
+# Vision Transformers for Image Processing  
+🚀 Implementation of **"Pre-training Vision Transformers with Very Limited Synthesized Images"**  
 
 ---
 
-## Table of Contents
-1. [Objective](#objective)
-2. [Features](#features)
-3. [Installation](#installation)
-4. [Setup](#setup)
-5. [Steps Performed](#steps-performed)
-6. [Execution](#execution)
-7. [Results](#results)
-8. [Challenges and Resolutions](#challenges-and-resolutions)
-9. [References](#references)
+## 📚 **1. Paper Summary**  
+This project implements the methodology from the **Q1 research paper** focusing on:  
+- **Vision Transformers (ViT)** for image classification  
+- **Pre-training on synthetic datasets**  
+- **Fine-tuning on real datasets (CIFAR-10)**  
+- **Performance evaluation and comparison**  
+
+🔗 **Paper Link**: [arXiv:2307.14710](https://arxiv.org/abs/2307.14710)  
 
 ---
 
-## Objective
+## 🧪 **2. Methodology**  
+### **2.1 Overview**  
+This project explores **pre-training ViTs on limited synthetic images** and fine-tuning them on **CIFAR-10**.  
 
-To implement and demonstrate the functionality of Meta's Segment Anything Model (SAM) using the pre-trained `vit_h.pth` checkpoint for accurate and efficient image segmentation tasks.
-
----
-
-## Features
-
-- **Pre-trained SAM Model Integration**: Utilizes the `vit_h` variant for advanced segmentation.
-- **Interactive Prompts**: Accepts user-defined points to generate segmentation masks.
-- **Multi-mask Generation**: Outputs multiple mask options for a single prompt.
-- **Visualization**: Displays the segmentation results using Matplotlib.
+### **2.2 Steps**  
+✔ **Synthetic Data Generation**: Create random image patterns as a pre-training dataset.  
+✔ **Pre-train ViT Model**: Train a ViT model on synthetic images.  
+✔ **Fine-tune on CIFAR-10**: Adapt the model for real-world image classification.  
+✔ **Evaluate Performance**: Compute accuracy, confusion matrix, and visualizations.  
 
 ---
 
-## Installation
+## 🔄 **3. Workflow**  
 
-### Prerequisites
+The following **workflow** outlines the entire pipeline:  
 
-- **Python Version**: Python 3.8 or higher
-- **Hardware**: GPU recommended for faster execution (optional)
+### **Step 1: Setup and Install Dependencies**  
+- Install required Python libraries.  
+- Download or generate datasets (CIFAR-10 & synthetic images).  
 
-### Required Libraries
+### **Step 2: Pre-Training the Vision Transformer (ViT)**  
+- Use **synthetic images** for pre-training.  
+- Train the ViT model using **limited synthesized data**.  
+- Save the pre-trained model for fine-tuning.  
 
-Install the necessary Python libraries using the command below:
+### **Step 3: Fine-Tuning on Real-World Data**  
+- Load the pre-trained ViT model.  
+- Fine-tune on **CIFAR-10** dataset.  
+- Adjust hyperparameters to improve accuracy.  
 
-```bash
-pip install torch torchvision numpy opencv-python matplotlib
+### **Step 4: Evaluation & Performance Analysis**  
+- Compute **test accuracy** and generate confusion matrix.  
+- Compare performance before & after fine-tuning.  
+- Visualize results (accuracy graphs, misclassified images).  
+
+### **Step 5: Deployment & Inference**  
+- Use the trained model to predict new images.  
+- Save logs and evaluation results for documentation.  
+
+---
+
+## 📂 **4. Repository Structure**  
+
+The repository follows this structure:  
+
+```
+📂 project-folder  
+ ├── 📄 README.md               # Project documentation  
+ ├── 📂 data/                   # Dataset links & instructions  
+ ├── 📂 src/                    # Source code for training, inference, and evaluation  
+ │   ├── train.py               # Training script  
+ │   ├── finetune.py            # Fine-tuning script  
+ │   ├── test.py                # Model evaluation  
+ │   ├── predict.py             # Single-image prediction  
+ │   ├── requirements.txt       # Required dependencies  
+ ├── 📂 notebooks/              # Jupyter notebooks for experiments  
+ │   ├── vit.ipynb     # ViT pre-training notebo 
+ ├── 📂 results/                # Performance metrics, graphs, logs  
+ │   ├── confusion_matrix.png   # Confusion matrix image 
+ │   ├── output.png   # output image
+ 
 ```
 
 ---
 
-## Setup
-
-1. **Clone the Repository**
-   ```bash
-   git clone https://github.com/yourusername/segment-anything-vit.git
-   cd segment-anything-vit
-   ```
-
-2. **Download the SAM Checkpoint**
-   - Visit [Meta's Segment Anything GitHub page](https://github.com/facebookresearch/segment-anything).
-   - Download the `vit_h.pth` checkpoint file and place it in the project directory.
-
-3. **Update Configuration**
-   Open the `sam_demo.py` file and update the following variables:
-   - `sam_checkpoint`: Path to the downloaded checkpoint file (e.g., `path/to/vit_h.pth`).
-   - `image_path`: Path to the input image file for segmentation.
-
----
-
-## Steps Performed
-
-### 1. Model Setup
-- Selected the `vit_h` variant of SAM, leveraging its high-resolution image processing capabilities.
-- Loaded the pre-trained checkpoint file (`vit_h.pth`).
-- Ensured compatibility with GPU (`cuda`) if available, or defaulted to CPU.
-
-### 2. Image Preprocessing
-- Loaded the input image using OpenCV.
-- Converted the image from BGR format (default in OpenCV) to RGB, aligning with the model's input requirements.
-
-### 3. Interactive Segmentation
-- Defined a user-specified point-based prompt for segmentation. For example:
-  - `input_point = np.array([[500, 375]])`
-  - `input_label = np.array([1])`
-- Generated segmentation masks based on the provided prompt.
-
-### 4. Visualization
-- Visualized the resulting segmentation mask using Matplotlib.
-- Allowed for user inspection of the generated masks.
-
----
-
-## Execution
-
-Run the segmentation script with the following command:
-
+## ⚙️ **5. Installation & Setup**  
+### **5.1 Install Dependencies**  
+Ensure you have Python 3.8+ installed, then run:  
 ```bash
-python sam_demo.py
+pip install -r src/requirements.txt
 ```
 
-Upon execution, the script will:
-1. Load the SAM model and the input image.
-2. Apply the point-based segmentation prompt.
-3. Generate and display the segmentation masks.
+### **5.2 Download & Prepare Datasets**  
+- **CIFAR-10 dataset** is automatically downloaded.  
+- **Synthetic data** is generated during training.  
 
 ---
 
-## Results
+## 🚀 **6. Training & Evaluation**  
+### **6.1 Pre-train Vision Transformer on Synthetic Data**  
+```bash
+python src/train.py
+```
 
-The project successfully performs segmentation based on user-defined prompts, producing detailed masks of the target object in the image.
+### **6.2 Fine-tune on CIFAR-10**  
+```bash
+python src/finetune.py
+```
 
-### Example Output
+### **6.3 Evaluate Model**  
+```bash
+python src/test.py
+```
 
-Here is an example of the segmentation mask generated:
-![image](https://github.com/user-attachments/assets/9e2db0b2-faa5-4e3f-8588-c09cc2c44b7b)
-![image](https://github.com/user-attachments/assets/a85e455c-8cc7-4128-bfbb-a6e9ea5cda72)
-
-
----
-
-## Challenges and Resolutions
-
-### Challenges
-
-1. **Path Management**
-   - Initial errors due to incorrect file paths for the model checkpoint and input image.
-   - **Resolution**: Verified paths and used absolute paths for reliability.
-
-2. **Device Compatibility**
-   - GPU compatibility issues on certain systems.
-   - **Resolution**: Implemented a fallback mechanism to CPU if GPU is unavailable.
-
-### Lessons Learned
-
-- The importance of precise path and dependency management in deep learning workflows.
-- The need for robust testing across different hardware configurations.
+### **6.4 Make Predictions on a New Image**  
+```bash
+python src/predict.py --image path/to/image.jpg
+```
 
 ---
 
-## References
-
-1. [Meta's Segment Anything Model (SAM)](https://github.com/facebookresearch/segment-anything)
-2. [PyTorch Documentation](https://pytorch.org/docs/stable/index.html)
-3. [OpenCV Documentation](https://docs.opencv.org/)
+## 📊 **7. Results & Observations**  
+- ✅ **Test Accuracy**: **95.14%** on CIFAR-10  
+- 📉 **Loss reduction observed** after pre-training  
+- 🔎 **Confusion Matrix**:  
+  ![Confusion Matrix](results/confusion_matrix.png)  
 
 ---
 
-Feel free to contribute, raise issues, or suggest improvements. This repository aims to serve as a starting point for further exploration of SAM and ViT integration.
+## 📘 **8. Challenges & Solutions**  
+### ❌ **Issue: Training was slow**  
+✅ **Solution**: Used **Mixed Precision (`torch.cuda.amp`)**, **batch size optimization**, and **PyTorch 2.0 compilation**.  
+
+### ❌ **Issue: Input size mismatch error (128x128 vs 224x224)**  
+✅ **Solution**: Resized images correctly to **224×224** before feeding into ViT.  
+
+---
+
+## 👨‍💻 **9. Contributors**  
+- **Your Name** ([@yourGitHubHandle](https://github.com/yourGitHubHandle))  
+
+---
+
+
+
