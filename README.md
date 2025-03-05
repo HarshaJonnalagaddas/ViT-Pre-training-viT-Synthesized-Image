@@ -119,9 +119,9 @@ python src/predict.py --image path/to/image.jpg
 - ✅ **Test Accuracy**: **95.14%** on CIFAR-10  
 - 📉 **Loss reduction observed** after pre-training  
 - 🔎 **Confusion Matrix**:  
-  ![Confusion Matrix](results/confusion_matrix.png)  
+    ![cm](https://github.com/user-attachments/assets/79c3b0a4-0466-4f8c-a2d1-a06b4f357920)
+    ![output](https://github.com/user-attachments/assets/275fb489-bde0-40cd-9277-b45981c91c57)
 
----
 
 ## 📘 **8. Challenges & Solutions**  
 ### ❌ **Issue: Training was slow**  
